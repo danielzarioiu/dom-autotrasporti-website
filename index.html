@@ -1,0 +1,1147 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>D.O.M Autotrasporti — Trasporto su strada, logistica e distribuzione</title>
+<meta name="description" content="D.O.M Autotrasporti: trasporto su strada e distribuzione in tutta la Regione Marche, logistica, catena del freddo, merci ADR e trasporto di medicinali GDP. Sede a Jesi (AN), consegne puntuali." />
+<meta name="theme-color" content="#0C0D0F" />
+<!-- v3 · footer-flex · form-redesign -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+<style>
+/* ============================================================
+   D.O.M AUTOTRASPORTI — Industrial Editorial
+   ============================================================ */
+:root{
+  --ink:#0C0D0F;
+  --ink-soft:#131519;
+  --ink-panel:#171A20;
+  --ink-panel-2:#1E222A;
+  --bone:#F4F1EA;
+  --bone-dim:#9C978C;
+  --bone-mute:#6C6A64;
+  --line:rgba(244,241,234,.10);
+  --line-strong:rgba(244,241,234,.20);
+  --signal:#D4FF3A;
+  --signal-deep:#A8D100;
+  --signal-glow:rgba(212,255,58,.35);
+  --ember:#FF5B1E;
+  --radius:14px;
+  --maxw:1280px;
+  --ease:cubic-bezier(.22,.61,.36,1);
+  --font-display:"Anton",Impact,sans-serif;
+  --font-body:"Archivo",system-ui,sans-serif;
+  --font-mono:"JetBrains Mono",ui-monospace,monospace;
+}
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  font-family:var(--font-body);
+  background:var(--ink);
+  color:var(--bone);
+  line-height:1.55;
+  font-size:16px;
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+}
+::selection{background:var(--signal);color:var(--ink)}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
+
+/* grain overlay */
+body::after{
+  content:"";position:fixed;inset:0;pointer-events:none;z-index:9999;opacity:.05;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+  mix-blend-mode:overlay;
+}
+
+/* scroll progress */
+.progress{position:fixed;top:0;left:0;height:3px;width:0;background:linear-gradient(90deg,var(--signal),var(--ember));z-index:1000;transition:width .1s linear;box-shadow:0 0 12px var(--signal-glow)}
+
+/* scrollbar */
+::-webkit-scrollbar{width:11px}
+::-webkit-scrollbar-track{background:var(--ink)}
+::-webkit-scrollbar-thumb{background:#2a2e36;border-radius:10px;border:3px solid var(--ink)}
+::-webkit-scrollbar-thumb:hover{background:#3a3f4a}
+
+/* layout */
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px}
+section{position:relative}
+
+.eyebrow{font-family:var(--font-mono);font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--bone-dim);display:inline-flex;align-items:center;gap:9px}
+.eyebrow::before{content:"";width:7px;height:7px;background:var(--signal);box-shadow:0 0 10px var(--signal-glow);border-radius:1px}
+
+h1,h2,h3{font-weight:800;line-height:.98;letter-spacing:-.02em}
+.display{font-family:var(--font-display);font-weight:400;letter-spacing:.005em;line-height:.86;text-transform:uppercase}
+.section-title{font-size:clamp(2.4rem,6vw,4.6rem);margin:18px 0 0}
+.lead{color:var(--bone-dim);font-size:1.08rem;max-width:56ch}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;gap:11px;font-weight:700;font-size:.95rem;padding:16px 26px;border-radius:100px;transition:all .35s var(--ease);letter-spacing:.01em;position:relative;overflow:hidden}
+.btn-primary{background:var(--signal);color:var(--ink)}
+.btn-primary:hover{background:var(--bone);transform:translateY(-2px);box-shadow:0 14px 40px var(--signal-glow)}
+.btn-ghost{border:1px solid var(--line-strong);color:var(--bone)}
+.btn-ghost:hover{border-color:var(--signal);color:var(--signal);transform:translateY(-2px)}
+.btn svg{transition:transform .35s var(--ease)}
+.btn:hover svg{transform:translateX(4px)}
+
+/* ============================================================ TOP BAR */
+.topbar{background:var(--ink-soft);border-bottom:1px solid var(--line);font-size:.78rem;color:var(--bone-dim)}
+.topbar .wrap{display:flex;justify-content:space-between;align-items:center;height:38px;gap:20px}
+.topbar .live{display:flex;align-items:center;gap:8px;font-family:var(--font-mono);letter-spacing:.04em}
+.pulse{width:7px;height:7px;border-radius:50%;background:var(--signal);position:relative}
+.pulse::after{content:"";position:absolute;inset:-4px;border-radius:50%;border:1px solid var(--signal);animation:pulse 1.8s var(--ease) infinite}
+@keyframes pulse{0%{transform:scale(.6);opacity:1}100%{transform:scale(2.2);opacity:0}}
+.topbar .links{display:flex;gap:22px;align-items:center}
+.topbar a{transition:color .2s}
+.topbar a:hover{color:var(--signal)}
+.topbar .sep{width:1px;height:14px;background:var(--line-strong)}
+@media(max-width:760px){.topbar .hide-mob{display:none}.topbar .wrap{height:34px;font-size:.72rem}}
+
+/* ============================================================ NAV */
+.nav{position:sticky;top:0;z-index:500;transition:all .4s var(--ease);border-bottom:1px solid transparent}
+.nav.scrolled{background:rgba(12,13,15,.82);backdrop-filter:blur(18px) saturate(140%);-webkit-backdrop-filter:blur(18px) saturate(140%);border-bottom-color:var(--line)}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;height:76px}
+.brand{display:flex;align-items:center;gap:13px}
+.brand-mark{width:44px;height:44px;border:1px solid var(--line-strong);border-radius:10px;display:grid;place-items:center;position:relative;background:var(--ink-soft)}
+.brand-mark .wheel{width:24px;height:24px;border:2px solid var(--bone);border-radius:50%;position:relative;display:grid;place-items:center}
+.brand-mark .wheel::before{content:"";position:absolute;width:2px;height:22px;background:var(--bone-dim)}
+.brand-mark .wheel::after{content:"";position:absolute;width:22px;height:2px;background:var(--bone-dim)}
+.brand-mark .wheel .hub{width:7px;height:7px;background:var(--signal);border-radius:50%;box-shadow:0 0 8px var(--signal-glow);z-index:2}
+.brand-text{line-height:1}
+.brand-text .name{font-family:var(--font-display);font-size:1.35rem;letter-spacing:.04em}
+.brand-text .name b{color:var(--signal)}
+.brand-text .sub{font-family:var(--font-mono);font-size:.6rem;letter-spacing:.32em;color:var(--bone-dim);margin-top:4px}
+.nav-links{display:flex;gap:34px;align-items:center}
+.nav-links a{font-size:.86rem;font-weight:500;color:var(--bone-dim);transition:color .2s;position:relative;padding:4px 0}
+.nav-links a::after{content:"";position:absolute;left:0;bottom:-2px;width:0;height:1px;background:var(--signal);transition:width .3s var(--ease)}
+.nav-links a:hover{color:var(--bone)}
+.nav-links a:hover::after{width:100%}
+.nav-cta{display:flex;align-items:center;gap:14px}
+.nav-phone{font-family:var(--font-mono);font-size:.8rem;color:var(--bone-dim);display:flex;align-items:center;gap:7px}
+.nav-phone:hover{color:var(--signal)}
+.burger{display:none;width:44px;height:44px;border:1px solid var(--line-strong);border-radius:10px;flex-direction:column;justify-content:center;align-items:center;gap:5px}
+.burger span{width:18px;height:2px;background:var(--bone);transition:.3s var(--ease)}
+.burger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.burger.open span:nth-child(2){opacity:0}
+.burger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+@media(max-width:1040px){
+  .nav-links,.nav-phone{display:none}
+  .burger{display:flex}
+}
+.mobile-menu{position:fixed;inset:0;background:var(--ink);z-index:499;transform:translateY(-100%);transition:transform .5s var(--ease);display:flex;flex-direction:column;padding:120px 28px 40px;gap:6px}
+.mobile-menu.open{transform:translateY(0)}
+.mobile-menu a{font-family:var(--font-display);font-size:2.2rem;text-transform:uppercase;padding:10px 0;border-bottom:1px solid var(--line);color:var(--bone)}
+.mobile-menu a:hover{color:var(--signal);padding-left:14px;transition:.3s}
+
+/* ============================================================ HERO */
+.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;position:relative;overflow:hidden;padding:60px 0 80px}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:64px 64px;mask-image:radial-gradient(ellipse 80% 70% at 50% 40%,#000 30%,transparent 80%);-webkit-mask-image:radial-gradient(ellipse 80% 70% at 50% 40%,#000 30%,transparent 80%);opacity:.7}
+.hero-glow{position:absolute;width:780px;height:780px;border-radius:50%;background:radial-gradient(circle,rgba(212,255,58,.10),transparent 62%);top:-160px;right:-220px;filter:blur(20px);pointer-events:none}
+.hero-glow.b{background:radial-gradient(circle,rgba(255,91,30,.10),transparent 62%);top:auto;right:auto;bottom:-220px;left:-200px}
+.road{position:absolute;left:0;right:0;bottom:130px;height:2px;background:linear-gradient(90deg,transparent,var(--line-strong),transparent);overflow:hidden}
+.road::before{content:"";position:absolute;top:-1px;left:0;width:140px;height:4px;background:linear-gradient(90deg,transparent,var(--signal),transparent);filter:blur(1px);animation:roadrun 3.4s linear infinite}
+@keyframes roadrun{0%{left:-140px}100%{left:100%}}
+
+.hero .wrap{position:relative;z-index:2}
+.hero-top{display:flex;align-items:center;gap:14px;margin-bottom:36px;flex-wrap:wrap}
+.chip{display:inline-flex;align-items:center;gap:9px;font-family:var(--font-mono);font-size:.72rem;letter-spacing:.06em;padding:8px 14px;border:1px solid var(--line-strong);border-radius:100px;color:var(--bone-dim);background:rgba(20,22,26,.6)}
+.chip .pulse{width:6px;height:6px}
+.chip.accent{border-color:var(--signal);color:var(--signal)}
+
+.hero h1{font-family:var(--font-display);text-transform:uppercase;font-size:clamp(3.4rem,12vw,11rem);line-height:.84;letter-spacing:-.01em}
+.hero h1 .lime{color:var(--signal);position:relative}
+.hero h1 .lime::after{content:"";position:absolute;bottom:.06em;left:0;right:0;height:.08em;background:var(--signal);opacity:.25}
+.hero h1 .outline{-webkit-text-stroke:1.5px var(--bone);color:transparent}
+
+.hero-row{display:grid;grid-template-columns:1.4fr 1fr;gap:48px;align-items:end;margin-top:40px}
+.hero-sub{color:var(--bone-dim);font-size:1.08rem;max-width:48ch}
+.hero-actions{display:flex;gap:14px;margin-top:28px;flex-wrap:wrap}
+
+.hero-meta{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+.hero-meta .cell{background:var(--ink-soft);padding:22px}
+.hero-meta .num{font-family:var(--font-display);font-size:2.6rem;color:var(--signal);line-height:1}
+.hero-meta .lab{font-family:var(--font-mono);font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--bone-dim);margin-top:8px}
+
+/* floating data chips */
+.float{position:absolute;font-family:var(--font-mono);font-size:.7rem;color:var(--bone-dim);background:rgba(20,22,26,.85);border:1px solid var(--line-strong);padding:9px 13px;border-radius:8px;backdrop-filter:blur(6px);z-index:3}
+.float b{color:var(--signal);display:block;font-size:.78rem;letter-spacing:.04em}
+.float.f1{top:18%;right:8%;animation:floaty 6s ease-in-out infinite}
+.float.f2{bottom:30%;right:20%;animation:floaty 7s ease-in-out infinite .8s}
+.float.f3{top:40%;right:4%;animation:floaty 5.5s ease-in-out infinite .4s}
+@keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+@media(max-width:900px){.float{display:none}.hero-row{grid-template-columns:1fr;gap:32px}}
+
+.scroll-cue{position:absolute;bottom:28px;left:50%;transform:translateX(-50%);font-family:var(--font-mono);font-size:.66rem;letter-spacing:.2em;color:var(--bone-mute);display:flex;flex-direction:column;align-items:center;gap:10px}
+.scroll-cue .line{width:1px;height:40px;background:linear-gradient(var(--signal),transparent);animation:cue 2s ease-in-out infinite}
+@keyframes cue{0%,100%{opacity:.3;transform:scaleY(.6)}50%{opacity:1;transform:scaleY(1)}}
+
+/* ============================================================ MARQUEE */
+.marquee{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--signal);color:var(--ink);overflow:hidden;padding:18px 0}
+.marquee-track{display:flex;gap:0;width:max-content;animation:scrollx 28s linear infinite}
+.marquee:hover .marquee-track{animation-play-state:paused}
+.marquee-track span{font-family:var(--font-display);font-size:1.7rem;text-transform:uppercase;letter-spacing:.02em;padding:0 28px;display:flex;align-items:center;gap:28px;white-space:nowrap}
+.marquee-track span::after{content:"✦";color:var(--ember);font-size:1rem}
+@keyframes scrollx{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+
+/* ============================================================ SECTION HEAD */
+.sec{padding:120px 0}
+.sec-head{display:flex;justify-content:space-between;align-items:flex-end;gap:40px;margin-bottom:64px;flex-wrap:wrap}
+.sec-head .left{max-width:680px}
+.sec-head .lead{margin-top:22px}
+
+/* ============================================================ STATS */
+.stats{background:var(--ink-soft);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.stats-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:1px;background:var(--line)}
+.stat{background:var(--ink);padding:42px 26px;transition:background .3s}
+.stat:hover{background:var(--ink-soft)}
+.stat .n{font-family:var(--font-display);font-size:clamp(2.8rem,5vw,4.4rem);line-height:.9;color:var(--bone)}
+.stat .n .u{color:var(--signal)}
+.stat .l{font-family:var(--font-mono);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--bone-dim);margin-top:14px}
+@media(max-width:1040px){.stats-grid{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:600px){.stats-grid{grid-template-columns:repeat(2,1fr)}}
+
+/* ============================================================ SERVICES */
+.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.service{background:var(--ink-soft);border:1px solid var(--line);border-radius:var(--radius);padding:36px 30px;position:relative;overflow:hidden;transition:all .4s var(--ease)}
+.service::before{content:"";position:absolute;top:0;left:0;width:100%;height:3px;background:var(--signal);transform:scaleX(0);transform-origin:left;transition:transform .45s var(--ease)}
+.service:hover{transform:translateY(-6px);border-color:var(--line-strong);background:var(--ink-panel)}
+.service:hover::before{transform:scaleX(1)}
+.service .ico{width:54px;height:54px;border:1px solid var(--line-strong);border-radius:12px;display:grid;place-items:center;margin-bottom:26px;color:var(--signal);transition:.4s var(--ease)}
+.service:hover .ico{background:var(--signal);color:var(--ink);border-color:var(--signal);transform:rotate(-6deg)}
+.service .num{position:absolute;top:28px;right:28px;font-family:var(--font-mono);font-size:.72rem;color:var(--bone-mute)}
+.service h3{font-size:1.4rem;margin-bottom:12px;font-weight:800;letter-spacing:-.01em}
+.service p{color:var(--bone-dim);font-size:.95rem}
+.service .tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:20px}
+.service .tags span{font-family:var(--font-mono);font-size:.64rem;letter-spacing:.08em;text-transform:uppercase;color:var(--bone-mute);border:1px solid var(--line);padding:5px 9px;border-radius:100px}
+@media(max-width:980px){.services-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:620px){.services-grid{grid-template-columns:1fr}}
+
+/* ============================================================ COVERAGE / MAP */
+.cover{background:var(--ink-soft);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.cover-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:60px;align-items:center}
+.map-wrap{position:relative;background:var(--ink);border:1px solid var(--line);border-radius:var(--radius);aspect-ratio:6/7;overflow:hidden}
+.map-wrap svg{width:100%;height:100%;display:block}
+.map-node{fill:var(--bone-dim);transition:.3s}
+.map-node.hq{fill:var(--signal)}
+.map-hq-ring{fill:none;stroke:var(--signal);stroke-width:1.5;transform-origin:center;transform-box:fill-box;animation:ringp 2.4s var(--ease) infinite}
+@keyframes ringp{0%{r:6;opacity:.9}100%{r:26;opacity:0}}
+.map-link{stroke:var(--signal);stroke-width:1.2;fill:none;opacity:.4;stroke-dasharray:4 5;animation:dash 18s linear infinite}
+.map-link.intl{stroke:var(--ember);opacity:.3}
+@keyframes dash{to{stroke-dashoffset:-200}}
+.map-label{font-family:var(--font-mono);font-size:8px;fill:var(--bone-dim);letter-spacing:.05em}
+.map-label.hq{fill:var(--signal);font-weight:700}
+.map-legend{position:absolute;bottom:16px;left:16px;display:flex;gap:16px;font-family:var(--font-mono);font-size:.62rem;color:var(--bone-dim);background:rgba(12,13,15,.8);padding:10px 14px;border-radius:8px;border:1px solid var(--line);backdrop-filter:blur(6px)}
+.map-legend i{width:8px;height:8px;border-radius:50%;display:inline-block;margin-right:6px;vertical-align:middle}
+
+.cover-list h3{font-family:var(--font-display);font-size:2.2rem;text-transform:uppercase;margin-bottom:6px}
+.region-cols{display:grid;grid-template-columns:1fr 1fr;gap:0 28px;margin-top:28px}
+.region-cols .grp{margin-bottom:22px}
+.region-cols .grp-t{font-family:var(--font-mono);font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--signal);margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.region-cols .grp-t::before{content:"";width:14px;height:1px;background:var(--signal)}
+.region-cols li{list-style:none;font-size:.92rem;color:var(--bone-dim);padding:5px 0;display:flex;align-items:center;gap:9px;transition:.2s;cursor:default}
+.region-cols li::before{content:"";width:5px;height:5px;background:var(--bone-mute);border-radius:1px}
+.region-cols li:hover{color:var(--bone)}
+.region-cols li:hover::before{background:var(--signal)}
+@media(max-width:980px){.cover-grid{grid-template-columns:1fr;gap:40px}}
+
+/* ============================================================ WHY / PROCESS */
+.why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+.why{background:var(--ink-soft);padding:40px 32px;position:relative;transition:background .3s}
+.why:hover{background:var(--ink-panel)}
+.why .step{font-family:var(--font-display);font-size:3rem;color:var(--ink-panel-2);-webkit-text-stroke:1px var(--line-strong);line-height:1;margin-bottom:18px;transition:.3s}
+.why:hover .step{color:var(--signal);-webkit-text-stroke:0}
+.why h3{font-size:1.25rem;margin-bottom:10px;font-weight:800}
+.why p{color:var(--bone-dim);font-size:.92rem}
+@media(max-width:980px){.why-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:600px){.why-grid{grid-template-columns:1fr}}
+
+/* ============================================================ MEDICINALI / PHARMA */
+.med{background:linear-gradient(180deg,var(--ink),var(--ink-soft));position:relative;overflow:hidden}
+.med::before{content:"";position:absolute;top:-200px;right:-200px;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(212,255,58,.06),transparent 60%);pointer-events:none}
+.med-card{background:linear-gradient(135deg,var(--ink-panel),var(--ink-panel-2));border:1px solid var(--line);border-radius:22px;padding:56px;display:grid;grid-template-columns:1.05fr 1fr;gap:56px;position:relative;overflow:hidden}
+.med-card::after{content:"";position:absolute;left:0;top:0;width:5px;height:100%;background:linear-gradient(var(--signal),var(--ember))}
+.med-left{display:flex;flex-direction:column;justify-content:center}
+.med-title{font-family:var(--font-display);font-size:clamp(2.1rem,4.4vw,3.4rem);text-transform:uppercase;line-height:.92;margin:18px 0 0}
+.med-title .lime{color:var(--signal)}
+.med-sub{margin-top:22px}
+.med-cta{margin-top:32px;align-self:flex-start}
+.med-right{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.med-feat{background:var(--ink);border:1px solid var(--line);border-radius:14px;padding:24px;transition:.3s}
+.med-feat:hover{border-color:var(--signal);transform:translateY(-3px)}
+.med-feat .mf-ico{width:46px;height:46px;border-radius:11px;display:grid;place-items:center;background:rgba(212,255,58,.10);color:var(--signal);margin-bottom:16px}
+.med-feat h4{font-size:1.02rem;font-weight:700;margin-bottom:8px}
+.med-feat p{font-size:.86rem;color:var(--bone-dim);line-height:1.5}
+.med-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--radius);margin-top:24px;overflow:hidden}
+.med-strip .ms{background:var(--ink-soft);padding:28px 24px;text-align:center}
+.med-strip .ms-n{font-family:var(--font-display);font-size:clamp(1.4rem,2.6vw,2rem);color:var(--signal);line-height:1}
+.med-strip .ms-l{font-family:var(--font-mono);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--bone-dim);margin-top:10px}
+@media(max-width:860px){.med-card{grid-template-columns:1fr;padding:36px;gap:32px}.med-right{grid-template-columns:1fr}}
+@media(max-width:600px){.med-strip{grid-template-columns:repeat(2,1fr)}}
+
+/* ============================================================ FLEET / FEATURE */
+.fleet{background:var(--ink-soft);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.fleet-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:50px;align-items:center}
+.fleet-visual{position:relative;border-radius:var(--radius);overflow:hidden;border:1px solid var(--line);aspect-ratio:4/3;background:linear-gradient(135deg,#1a1d23,#0f1115)}
+.fleet-visual svg{width:100%;height:100%}
+.fleet-badge{position:absolute;top:20px;left:20px;background:var(--signal);color:var(--ink);font-family:var(--font-mono);font-size:.7rem;font-weight:700;letter-spacing:.08em;padding:8px 14px;border-radius:100px;text-transform:uppercase}
+.fleet-specs{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:30px}
+.fleet-specs .sp{background:var(--ink);border:1px solid var(--line);border-radius:12px;padding:20px}
+.fleet-specs .sp .k{font-family:var(--font-mono);font-size:.66rem;letter-spacing:.1em;color:var(--bone-dim);text-transform:uppercase}
+.fleet-specs .sp .v{font-family:var(--font-display);font-size:1.8rem;color:var(--bone);margin-top:6px;line-height:1}
+.fleet-specs .sp .v .u{color:var(--signal);font-size:1rem}
+.fleet-points{list-style:none;margin-top:24px}
+.fleet-points li{padding:14px 0;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:14px;color:var(--bone-dim)}
+.fleet-points li svg{color:var(--signal);flex-shrink:0}
+.fleet-points li b{color:var(--bone);font-weight:600}
+@media(max-width:980px){.fleet-grid{grid-template-columns:1fr}}
+
+/* ============================================================ SUSTAINABILITY */
+.sust-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+.sust h2 .lime{color:var(--signal)}
+.sust-meter{background:var(--ink-soft);border:1px solid var(--line);border-radius:var(--radius);padding:40px}
+.sust-meter .big{font-family:var(--font-display);font-size:5rem;color:var(--signal);line-height:.9}
+.sust-meter .big .u{color:var(--bone);font-size:1.8rem}
+.sust-meter .cap{color:var(--bone-dim);margin-top:10px;font-size:.95rem}
+.bars{margin-top:34px;display:flex;flex-direction:column;gap:20px}
+.bar .bh{display:flex;justify-content:space-between;font-family:var(--font-mono);font-size:.74rem;margin-bottom:8px}
+.bar .bh .pct{color:var(--signal)}
+.bar .track-bar{height:7px;background:var(--ink);border-radius:10px;overflow:hidden;border:1px solid var(--line)}
+.bar .fill{height:100%;background:linear-gradient(90deg,var(--signal-deep),var(--signal));border-radius:10px;width:0;transition:width 1.4s var(--ease)}
+@media(max-width:980px){.sust-grid{grid-template-columns:1fr}}
+
+/* ============================================================ TESTIMONIALS */
+.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.testi{background:var(--ink-soft);border:1px solid var(--line);border-radius:var(--radius);padding:36px 30px;display:flex;flex-direction:column;gap:22px;transition:.3s}
+.testi:hover{border-color:var(--signal);transform:translateY(-4px)}
+.testi .stars{color:var(--signal);font-size:.9rem;letter-spacing:3px}
+.testi blockquote{font-size:1.02rem;line-height:1.6;color:var(--bone)}
+.testi blockquote::before{content:"\201C";color:var(--signal);font-family:var(--font-display);font-size:2.5rem;line-height:0;vertical-align:-.35em;margin-right:6px}
+.testi .who{display:flex;align-items:center;gap:13px;margin-top:auto;padding-top:20px;border-top:1px solid var(--line)}
+.testi .av{width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,var(--signal),var(--ember));display:grid;place-items:center;font-family:var(--font-display);color:var(--ink);font-size:1.1rem}
+.testi .nm{font-weight:700;font-size:.92rem}
+.testi .rl{font-family:var(--font-mono);font-size:.7rem;color:var(--bone-dim);letter-spacing:.05em}
+@media(max-width:980px){.testi-grid{grid-template-columns:1fr}}
+
+/* ============================================================ CTA BAND */
+.ctaband{position:relative;overflow:hidden;background:var(--signal);color:var(--ink)}
+.ctaband .wrap{display:flex;justify-content:space-between;align-items:center;gap:40px;padding:70px 28px;flex-wrap:wrap;position:relative;z-index:2}
+.ctaband h2{font-family:var(--font-display);font-size:clamp(2.2rem,5vw,4rem);text-transform:uppercase;line-height:.92;max-width:14ch}
+.ctaband p{color:rgba(12,13,15,.7);margin-top:14px;max-width:42ch;font-weight:500}
+.ctaband .btn-primary{background:var(--ink);color:var(--signal)}
+.ctaband .btn-primary:hover{background:#000;box-shadow:0 14px 40px rgba(0,0,0,.4)}
+.ctaband::before{content:"";position:absolute;inset:0;background-image:repeating-linear-gradient(45deg,transparent,transparent 22px,rgba(0,0,0,.04) 22px,rgba(0,0,0,.04) 44px)}
+
+/* ============================================================ CONTACT */
+.contact-grid{display:flex;flex-flow:row nowrap;gap:56px;align-items:stretch}
+.contact-info{flex:1 1 50%;width:50%;min-width:0}
+.contact-info h2{font-family:var(--font-display);font-size:clamp(2.2rem,5vw,3.6rem);text-transform:uppercase;margin-bottom:24px}
+.contact-info .lead{margin-bottom:36px}
+.cinfo{display:flex;flex-direction:column;gap:0}
+.cinfo .row{display:flex;gap:18px;padding:22px 0;border-bottom:1px solid var(--line);align-items:flex-start}
+.cinfo .row:last-child{border-bottom:none}
+.cinfo .row .ic{width:46px;height:46px;border:1px solid var(--line-strong);border-radius:12px;display:grid;place-items:center;color:var(--signal);flex-shrink:0;background:var(--ink-soft);transition:.3s}
+.cinfo .row:hover .ic{background:var(--signal);color:var(--ink);border-color:var(--signal)}
+.cinfo .row .k{font-family:var(--font-mono);font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;color:var(--bone-dim)}
+.cinfo .row .v{font-size:1.02rem;color:var(--bone);margin-top:4px;line-height:1.5}
+.cinfo .row .v a:hover{color:var(--signal)}
+
+/* ---------- form (premium) ---------- */
+.form-card{flex:1 1 50%;width:50%;min-width:0;background:linear-gradient(165deg,var(--ink-panel),var(--ink-soft));border:1px solid var(--line-strong);border-radius:24px;padding:42px;position:relative;overflow:hidden;box-shadow:0 30px 70px -30px rgba(0,0,0,.6)}
+.form-card::before{content:"";position:absolute;top:0;left:0;width:100%;height:4px;background:linear-gradient(90deg,var(--signal),var(--ember))}
+.form-card::after{content:"";position:absolute;top:-140px;right:-140px;width:340px;height:340px;border-radius:50%;background:radial-gradient(circle,rgba(212,255,58,.08),transparent 60%);pointer-events:none}
+.form-card>*{position:relative;z-index:1}
+.form-card .fc-head{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;margin-bottom:30px}
+.form-card h3{font-family:var(--font-display);font-size:1.85rem;text-transform:uppercase;margin-bottom:6px;letter-spacing:.01em;line-height:1}
+.form-card .sub{color:var(--bone-dim);font-size:.92rem}
+.form-card .fc-badge{font-family:var(--font-mono);font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:var(--signal);border:1px solid var(--signal);padding:8px 13px;border-radius:100px;white-space:nowrap;flex-shrink:0;display:inline-flex;align-items:center;gap:8px;background:rgba(212,255,58,.04)}
+.form-card .fc-badge::before{content:"";width:6px;height:6px;background:var(--signal);border-radius:50%;box-shadow:0 0 8px var(--signal-glow);animation:pulse2 1.6s infinite}
+
+/* floating-style label field */
+.fg{position:relative;margin-bottom:16px}
+.fg label{display:block;font-family:var(--font-mono);font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--bone-dim);margin-bottom:9px;transition:.25s var(--ease);font-weight:600}
+.fg label .req{color:var(--signal);margin-left:2px}
+.fg input,.fg select,.fg textarea{width:100%;box-sizing:border-box;background:var(--ink);border:1px solid var(--line-strong);border-radius:13px;padding:16px 18px;color:var(--bone);font-family:var(--font-body);font-size:.98rem;outline:none;transition:.28s var(--ease)}
+.fg textarea{resize:vertical;min-height:118px;font-family:var(--font-body)}
+.fg select{appearance:none;-webkit-appearance:none;cursor:pointer;padding-right:46px;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'><path fill='%23D4FF3A' d='M6 8 0 0h12z'/></svg>");background-repeat:no-repeat;background-position:right 18px center}
+.fg input:hover,.fg select:hover,.fg textarea:hover{border-color:var(--bone-mute);background:var(--ink-soft)}
+.fg input:focus,.fg select:focus,.fg textarea:focus{border-color:var(--signal);box-shadow:0 0 0 4px var(--signal-glow),inset 0 0 0 1px var(--signal);background:var(--ink-soft)}
+.fg:focus-within label{color:var(--signal);letter-spacing:.18em}
+.fg input::placeholder,.fg textarea::placeholder{color:var(--bone-mute)}
+.frow{display:flex;flex-flow:row nowrap;gap:14px}
+.frow .fg{flex:1 1 0;min-width:0}
+.form-card .submit-row{display:flex;align-items:center;gap:14px;margin-top:18px}
+.form-card .submit-row button{flex:1;margin-top:0;justify-content:center;padding:18px 26px;font-size:1rem;font-weight:800;border-radius:13px}
+.form-note{font-family:var(--font-mono);font-size:.62rem;color:var(--bone-mute);margin-top:16px;text-align:center;letter-spacing:.04em;line-height:1.6}
+.form-note a{color:var(--signal)}
+.form-note a:hover{text-decoration:underline}
+@media(max-width:920px){.contact-grid{flex-direction:column}.contact-info,.form-card{flex:1 1 100%;width:100%}}
+@media(max-width:520px){.frow{flex-direction:column}.form-card{padding:32px 24px}.form-card .fc-head{flex-direction:column;align-items:flex-start}}
+
+/* ============================================================ FOOTER */
+footer{background:var(--ink-soft);border-top:1px solid var(--line);padding:80px 0 30px}
+footer .foot-grid{display:flex;flex-direction:row;flex-wrap:nowrap;align-items:flex-start;justify-content:space-between;gap:40px;margin-bottom:60px;width:100%}
+footer .foot-brand{flex:0 1 28%;min-width:0}
+footer .foot-col{flex:1 1 22%;min-width:0}
+footer .foot-col h4{font-family:var(--font-mono);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--bone);margin-bottom:20px;position:relative;padding-bottom:14px}
+footer .foot-col h4::after{content:"";position:absolute;left:0;bottom:0;width:24px;height:2px;background:var(--signal)}
+footer .foot-brand .brand{margin-bottom:22px}
+footer .foot-brand p{color:var(--bone-dim);font-size:.92rem;max-width:34ch}
+footer .foot-social{display:flex;gap:10px;margin-top:24px}
+footer .foot-social a{width:40px;height:40px;border:1px solid var(--line-strong);border-radius:10px;display:grid;place-items:center;color:var(--bone-dim);transition:.3s}
+footer .foot-social a:hover{background:var(--signal);color:var(--ink);border-color:var(--signal);transform:translateY(-3px)}
+footer .foot-col ul{list-style:none;display:flex;flex-direction:column;gap:12px}
+footer .foot-col a{color:var(--bone-dim);font-size:.92rem;transition:.2s}
+footer .foot-col a:hover{color:var(--signal);padding-left:5px}
+footer .foot-bottom{border-top:1px solid var(--line);padding-top:30px;display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;font-family:var(--font-mono);font-size:.72rem;color:var(--bone-mute)}
+footer .foot-bottom .legal{display:flex;gap:22px}
+footer .foot-bottom a:hover{color:var(--signal)}
+@media(max-width:900px){footer .foot-grid{flex-wrap:wrap}footer .foot-brand{flex:1 1 100%;margin-bottom:24px}footer .foot-col{flex:1 1 30%}}
+@media(max-width:600px){footer .foot-grid{flex-direction:column}footer .foot-col,footer .foot-brand{flex:1 1 100%}footer .foot-bottom{flex-direction:column;align-items:flex-start}}
+
+/* ============================================================ REVEAL */
+.reveal{opacity:0;transform:translateY(36px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
+.reveal.in{opacity:1;transform:none}
+.reveal.d1{transition-delay:.08s}.reveal.d2{transition-delay:.16s}.reveal.d3{transition-delay:.24s}.reveal.d4{transition-delay:.32s}.reveal.d5{transition-delay:.4s}
+
+/* toast */
+.toast{position:fixed;bottom:30px;left:50%;transform:translateX(-50%) translateY(120px);background:var(--ink-panel);border:1px solid var(--signal);color:var(--bone);padding:16px 24px;border-radius:12px;font-size:.9rem;z-index:2000;display:flex;align-items:center;gap:12px;box-shadow:0 20px 60px rgba(0,0,0,.5);transition:transform .5s var(--ease)}
+.toast.show{transform:translateX(-50%) translateY(0)}
+.toast .ic{color:var(--signal)}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;scroll-behavior:auto!important}
+  .reveal{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+
+<div class="progress" id="progress"></div>
+
+<!-- ===================== TOP BAR ===================== -->
+<div class="topbar">
+  <div class="wrap">
+    <div class="live"><span class="pulse"></span> Sede operativa attiva · Jesi (AN) · Logistica &amp; distribuzione</div>
+    <div class="links">
+      <a href="tel:+39051000000" class="hide-mob">☎ +39 051 000 000</a>
+      <span class="sep hide-mob"></span>
+      <a href="mailto:info@domautotrasporti.it" class="hide-mob">✉ info@domautotrasporti.it</a>
+      <span class="sep"></span>
+      <a href="#contatti">Lun–Ven · 07:30–19:00</a>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== NAV ===================== -->
+<nav class="nav" id="nav">
+  <div class="wrap">
+    <a href="#" class="brand">
+      <span class="brand-mark">
+        <span class="wheel"><span class="hub"></span></span>
+      </span>
+      <span class="brand-text">
+        <span class="name">D<b>.</b>O<b>.</b>M</span>
+        <span class="sub">AUTOTRASPORTI</span>
+      </span>
+    </a>
+    <div class="nav-links">
+      <a href="#servizi">Servizi</a>
+      <a href="#rete">Rete &amp; Copertura</a>
+      <a href="#flotta">Flotta</a>
+      <a href="#perche">Perché D.O.M</a>
+      <a href="#sostenibilita">Sostenibilità</a>
+      <a href="#medicinali">Medicinali</a>
+    </div>
+    <div class="nav-cta">
+      <a href="tel:+39051000000" class="nav-phone">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        +39 051 000 000
+      </a>
+      <a href="#contatti" class="btn btn-primary">Richiedi preventivo
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+    </div>
+    <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#servizi">Servizi</a>
+  <a href="#rete">Rete &amp; Copertura</a>
+  <a href="#flotta">Flotta</a>
+  <a href="#perche">Perché D.O.M</a>
+  <a href="#sostenibilita">Sostenibilità</a>
+  <a href="#medicinali">Medicinali</a>
+  <a href="#contatti">Contatti</a>
+</div>
+
+<!-- ===================== HERO ===================== -->
+<header class="hero" id="top">
+  <div class="hero-grid"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-glow b"></div>
+  <div class="road"></div>
+
+      <div class="float f1"><b>TEMPERATURA CASSA</b>+4°C · monitoraggio attivo</div>
+  <div class="float f2"><b>COPERTURA</b>5 province · tutta la Regione Marche</div>
+  <div class="float f3"><b>42 MEZZI</b>Flotta Euro 6 · autisti certificati</div>
+
+  <div class="wrap">
+    <div class="hero-top">
+      <span class="chip accent"><span class="pulse"></span> Flotta online · 42 mezzi attivi</span>
+      <span class="chip">Fondata nel 1998 · Jesi (AN)</span>
+    </div>
+
+    <h1 class="reveal">
+      Merce in viaggio,<br>
+      <span class="lime">affari in movimento</span><br>
+      <span class="outline">senza interruzioni.</span>
+    </h1>
+
+    <div class="hero-row">
+      <div class="reveal d1">
+        <p class="hero-sub">D.O.M Autotrasporti muove la tua merce su strada con la precisione di un'operazione logistica e l'affidabilità di un partner locale. Trasporto e distribuzione in tutta la Regione Marche, logistica integrata, catena del freddo e trasporto di medicinali secondo le norme GDP.</p>
+        <div class="hero-actions">
+          <a href="#contatti" class="btn btn-primary">Richiedi preventivo
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+          <a href="#medicinali" class="btn btn-ghost">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 2v6H5v8h6v6h2v-6h6V8h-6V2z"/></svg>
+            Trasporto medicinali
+          </a>
+        </div>
+      </div>
+
+      <div class="hero-meta reveal d2">
+        <div class="cell"><div class="num">99,2<span style="font-size:1.4rem">%</span></div><div class="lab">Consegne in tempo</div></div>
+        <div class="cell"><div class="num">4,8M</div><div class="lab">Km / anno percorsi</div></div>
+        <div class="cell"><div class="num">5</div><div class="lab">Province marchigiane</div></div>
+        <div class="cell"><div class="num">GDP</div><div class="lab">Cert. medicinali</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="scroll-cue">SCORRI<div class="line"></div></div>
+</header>
+
+<!-- ===================== MARQUEE ===================== -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track">
+    <span>Trasporto Express</span><span>Distribuzione Marche</span><span>Catena del Freddo</span><span>Medicinali GDP</span><span>Logistica Integrata</span><span>Merci ADR</span><span>Distribuzione Locale</span>
+    <span>Trasporto Express</span><span>Distribuzione Marche</span><span>Catena del Freddo</span><span>Medicinali GDP</span><span>Logistica Integrata</span><span>Merci ADR</span><span>Distribuzione Locale</span>
+  </div>
+</div>
+
+<!-- ===================== STATS ===================== -->
+<section class="stats sec" style="padding-top:0;padding-bottom:0">
+  <div class="wrap" style="padding:0;max-width:none">
+    <div class="stats-grid">
+      <div class="stat"><div class="n" data-count="27" data-suffix="+">0</div><div class="l">Anni su strada</div></div>
+      <div class="stat"><div class="n" data-count="42">0</div><div class="l">Mezzi in flotta</div></div>
+      <div class="stat"><div class="n" data-count="1.4" data-dec="1" data-suffix="M">0</div><div class="l">Km percorsi / anno</div></div>
+      <div class="stat"><div class="n" data-count="99.2" data-dec="1" data-suffix="%">0</div><div class="l">Consegne in tempo</div></div>
+      <div class="stat"><div class="n" data-count="5">0</div><div class="l">Province marchigiane</div></div>
+      <div class="stat"><div class="n" data-count="650" data-suffix="+">0</div><div class="l">Clienti attivi</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== SERVICES ===================== -->
+<section class="sec" id="servizi">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="left">
+        <span class="eyebrow">Cosa facciamo</span>
+        <h2 class="display section-title">Servizi su misura per ogni tipo di merce.</h2>
+      </div>
+      <p class="lead">Dalla busta al container, copriamo l'intera catena di trasporto in Regione Marche con soluzioni integrate, personale certificato e cura del dettaglio su ogni consegna.</p>
+    </div>
+
+    <div class="services-grid">
+      <article class="service reveal">
+        <span class="num">01</span>
+        <div class="ico"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M13 2 3 14h7l-1 8 10-12h-7l1-8z"/></svg></div>
+        <h3>Trasporto Express</h3>
+        <p>Consegne rapide nelle cinque province marchigiane con priorità e gestione dedicata delle urgenze.</p>
+        <div class="tags"><span>Giornaliero</span><span>Dedicato</span><span>Prioritario</span></div>
+      </article>
+
+      <article class="service reveal d1">
+        <span class="num">02</span>
+        <div class="ico"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 9h18M3 14h18M5 5h14a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2z"/></svg></div>
+        <h3>Distribuzione Capillare</h3>
+        <p>Ultima miglia in tutta la Regione Marche con consegne programmate e titolari di flotta dedicati per provincia.</p>
+        <div class="tags"><span>Ultima miglia</span><span>Programmato</span></div>
+      </article>
+
+      <article class="service reveal d2">
+        <span class="num">03</span>
+        <div class="ico"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 7v10a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-6l-2-3H5a2 2 0 0 0-2 2z"/></svg></div>
+        <h3>Logistica &amp; Magazzino</h3>
+        <p>Stoccaggio, picking, gestione e preparazione ordini nel nostro hub di Jesi. Integrazione completa con il tuo e-commerce o ERP.</p>
+        <div class="tags"><span>Stoccaggio</span><span>Picking</span><span>WMS</span></div>
+      </article>
+
+      <article class="service reveal d1">
+        <span class="num">04</span>
+        <div class="ico"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M11 2v6H5v8h6v6h2v-6h6V8h-6V2z"/></svg></div>
+        <h3>Trasporto Medicinali</h3>
+        <p>Trasporto di farmaci e prodotti farmaceutici secondo le Good Distribution Practice (GDP), con tracciabilità e temperatura controllata.</p>
+        <div class="tags"><span>GDP</span><span>Tracciabilità</span><span>Cold chain</span></div>
+      </article>
+
+      <article class="service reveal d2">
+        <span class="num">05</span>
+        <div class="ico"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2 2 22h20L12 2z"/><path d="M12 9v6M12 18h.01"/></svg></div>
+        <h3>Merci Pericolose — ADR</h3>
+        <p>Trasporto di prodotti pericolosi con autisti e mezzi certificati ADR, in regola con tutta la normativa vigente.</p>
+        <div class="tags"><span>ADR Cert.</span><span>Sicuro</span></div>
+      </article>
+
+      <article class="service reveal d3">
+        <span class="num">06</span>
+        <div class="ico"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2v20M2 9l10-7 10 7M2 15l10 7 10-7"/></svg></div>
+        <h3>Catena del Freddo</h3>
+        <p>Trasporto refrigerato a temperatura controllata per alimentari e farmaci, con monitoraggio continuo della cassa.</p>
+        <div class="tags"><span>Refrigerato</span><span>HACCP</span><span>Monitorato</span></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== COVERAGE / MAP ===================== -->
+<section class="cover sec" id="rete">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="left">
+        <span class="eyebrow">Rete &amp; Copertura</span>
+        <h2 class="display section-title">Tutta la Regione Marche, provincia per provincia.</h2>
+        <p class="lead">Siamo specializzati sul territorio marchigiano. Dalla nostra sede a Jesi (AN) raggiungiamo ogni giorno le cinque province delle Marche con linee dedicate e consegne programmate.</p>
+      </div>
+    </div>
+
+    <div class="cover-grid">
+      <div class="map-wrap reveal">
+        <svg viewBox="0 0 600 700" preserveAspectRatio="xMidYMid meet">
+          <!-- Map of Marche (stylized) -->
+          <defs>
+            <linearGradient id="marcShade" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#1c2128"/><stop offset="1" stop-color="#11141a"/>
+            </linearGradient>
+          </defs>
+          <!-- region outline (stylized Marche shape) -->
+          <path d="M250 90 C300 80 330 120 345 165 C360 210 380 240 392 285 C405 330 410 380 395 430 C380 480 360 530 330 575 C300 615 270 620 250 590 C232 560 235 520 222 485 C210 450 185 425 178 385 C170 345 195 320 200 280 C205 240 188 215 200 180 C210 145 225 105 250 90 Z"
+                fill="url(#marcShade)" stroke="rgba(212,255,58,.30)" stroke-width="1.5"/>
+          <!-- province borders (decorative) -->
+          <path d="M250 90 C268 110 280 135 285 165 M222 220 C255 215 290 215 320 215 M205 300 C250 300 300 300 350 300 M195 390 C245 385 300 385 370 385 M250 470 C280 475 310 480 340 485"
+                stroke="rgba(244,241,234,.06)" stroke-width="1" fill="none"/>
+
+          <!-- connection lines from Jesi HQ to each province capital -->
+          <line class="map-link" x1="300" y1="255" x2="280" y2="160"/>
+          <line class="map-link" x1="300" y1="255" x2="385" y2="285"/>
+          <line class="map-link" x1="300" y1="255" x2="260" y2="370"/>
+          <line class="map-link" x1="300" y1="255" x2="215" y2="440"/>
+          <line class="map-link" x1="300" y1="255" x2="335" y2="520"/>
+
+          <!-- province nodes -->
+          <g><circle class="map-node" cx="280" cy="160" r="5"/><text class="map-label" x="292" y="156">PESARO</text></g>
+          <g><circle class="map-node" cx="385" cy="285" r="5"/><text class="map-label" x="398" y="289">ANCONA</text></g>
+          <g><circle class="map-node" cx="260" cy="370" r="5"/><text class="map-label" x="210" y="366">MACERATA</text></g>
+          <g><circle class="map-node" cx="215" cy="440" r="5"/><text class="map-label" x="150" y="444">FERMO</text></g>
+          <g><circle class="map-node" cx="335" cy="520" r="5"/><text class="map-label" x="347" y="524">ASCOLI PICENO</text></g>
+
+          <!-- HQ (Jesi, within Ancona province) -->
+          <g>
+            <circle class="map-hq-ring" cx="300" cy="255" r="6"/>
+            <circle class="map-node hq" cx="300" cy="255" r="6.5"/>
+            <text class="map-label hq" x="312" y="251">JESI · SEDE</text>
+          </g>
+        </svg>
+        <div class="map-legend">
+          <span><i style="background:var(--signal)"></i>Sede Jesi (AN)</span>
+          <span><i style="background:var(--bone-dim)"></i>Capoluoghi di provincia</span>
+        </div>
+      </div>
+
+      <div class="cover-list reveal d1">
+        <h3>Cinque province, una rete.</h3>
+        <p class="lead" style="margin-top:8px">Consegne quotidiane e linee dedicate su tutto il territorio regionale, con tempi certi e referenti locali.</p>
+        <div class="region-cols">
+          <div>
+            <div class="grp">
+              <div class="grp-t">Province servite</div>
+              <ul>
+                <li>Ancona · Jesi (sede)</li><li>Pesaro e Urbino</li><li>Macerata</li><li>Fermo</li><li>Ascoli Piceno</li>
+              </ul>
+            </div>
+            <div class="grp">
+              <div class="grp-t">Frequenza</div>
+              <ul>
+                <li>Linee quotidiane</li><li>Consegne mattutine / pomeridiane</li><li>Servizio urgente Same-Day</li>
+              </ul>
+            </div>
+          </div>
+          <div>
+            <div class="grp">
+              <div class="grp-t">Hub locale</div>
+              <ul>
+                <li>Jesi (AN) · magazzino &amp; cross-docking</li><li>Raccolta &amp; distribuzione merci</li><li>Stoccaggio a temperatura controllata</li>
+              </ul>
+            </div>
+            <div class="grp">
+              <div class="grp-t">Perché solo Marche</div>
+              <ul>
+                <li>Conoscenza capillare del territorio</li><li>Tempi brevi, costi contenuti</li><li>Referente sempre raggiungibile</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== WHY / PROCESS ===================== -->
+<section class="sec" id="perche">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="left">
+        <span class="eyebrow">Perché D.O.M</span>
+        <h2 class="display section-title">Sei motivi per viaggiare con noi.</h2>
+      </div>
+      <p class="lead">Non trasportiamo solo merce: costruiamo fiducia. Ogni spedizione è tracciata, assicurata e gestita da un referente che conosci per nome.</p>
+    </div>
+
+    <div class="why-grid">
+      <div class="why reveal">
+        <div class="step">01</div>
+        <h3>Conoscenza del territorio</h3>
+        <p>Conosciamo ogni provincia, ogni comune e ogni direttrice delle Marche. Tempi certi e zero colli a vuoto su tutto il regionale.</p>
+      </div>
+      <div class="why reveal d1">
+        <div class="step">02</div>
+        <h3>Flotta moderna Euro 6</h3>
+        <p>Mezzi a basso impatto ambientale, telematizzati e manutenuti regolarmente per abbattere i fermi tecnici.</p>
+      </div>
+      <div class="why reveal d2">
+        <div class="step">03</div>
+        <h3>Merce assicurata</h3>
+        <p>Copertura assicurativa completa su ogni carico, con polizze dedicate per merci di valore o deperibili.</p>
+      </div>
+      <div class="why reveal d1">
+        <div class="step">04</div>
+        <h3>Personale certificato</h3>
+        <p>Autisti con patentino CQC, certificazioni ADR e HACCP. Formazione continua su sicurezza e procedure.</p>
+      </div>
+      <div class="why reveal d2">
+        <div class="step">05</div>
+        <h3>SLA garantiti</h3>
+        <p>Tempi di consegna contrattualizzati con indicatori di performance trasparenti e reportistica periodica.</p>
+      </div>
+      <div class="why reveal d3">
+        <div class="step">06</div>
+        <h3>Referente unico</h3>
+        <p>Un solo contatto dedicato per ogni cliente, raggiungibile direttamente. Niente call center, niente attese.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== MEDICINALI / PHARMA ===================== -->
+<section class="med sec" id="medicinali">
+  <div class="wrap">
+    <div class="med-card reveal">
+      <div class="med-left">
+        <span class="eyebrow">Trasporto di medicinali</span>
+        <h2 class="display med-title">Farmaci viaggiano<br><span class="lime">sicuri e tracciati</span>,<br>secondo le norme GDP.</h2>
+        <p class="lead med-sub">Trasportiamo prodotti farmaceutici, vaccini e termolabili per farmacie, ospedali, distributori e industrie del territorio marchigiano. Ogni spedizione rispetta le <b style="color:var(--bone)">Good Distribution Practice (GDP)</b> con catena del freddo garantita e tracciabilità completa.</p>
+        <a href="#contatti" class="btn btn-primary med-cta">Richiedi informazioni medicinali
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+      </div>
+
+      <div class="med-right">
+        <div class="med-feat">
+          <div class="mf-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg></div>
+          <div><h4>Certificazione GDP</h4><p>Procedure conforme alle Good Distribution Practice (Direttiva EU) per la distribuzione dei medicinali.</p></div>
+        </div>
+        <div class="med-feat">
+          <div class="mf-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 4v20l-6-4-6 4V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2z"/><path d="M2 4h2M2 10h2"/></svg></div>
+          <div><h4>Catena del freddo controllata</h4><p>Trasporto a temperatura controllata (+2/+8 °C e +15/+25 °C) con data logger su ogni singolo carico.</p></div>
+        </div>
+        <div class="med-feat">
+          <div class="mf-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4M12 18v4M2 12h4M18 12h4"/><circle cx="12" cy="12" r="5"/></svg></div>
+          <div><h4>Tracciabilità completa</h4><p>Documentazione di trasporto, registratore di temperatura e audit trail disponibili per ogni spedizione.</p></div>
+        </div>
+        <div class="med-feat">
+          <div class="mf-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 7 9 18l-5-5"/></svg></div>
+          <div><h4>Personale formato</h4><p>Autisti con formazione specifica sul trasporto di medicinali, gestione merci pericolose e procedure di qualità.</p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="med-strip reveal d1">
+      <div class="ms"><div class="ms-n">+2 / +8°C</div><div class="ms-l">Farmaci termolabili</div></div>
+      <div class="ms"><div class="ms-n">+15 / +25°C</div><div class="ms-l">Temperatura ambiente</div></div>
+      <div class="ms"><div class="ms-n">100%</div><div class="ms-l">Carichi monitorati</div></div>
+      <div class="ms"><div class="ms-n">GDP</div><div class="ms-l">Normativa europea</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FLEET ===================== -->
+<section class="fleet sec" id="flotta">
+  <div class="wrap">
+    <div class="fleet-grid">
+      <div class="fleet-visual reveal">
+        <span class="fleet-badge">Euro 6 · Telematica di bordo</span>
+        <svg viewBox="0 0 600 450" preserveAspectRatio="xMidYMid slice">
+          <defs>
+            <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#1c2128"/><stop offset="1" stop-color="#0f1115"/>
+            </linearGradient>
+            <linearGradient id="trk" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#2a2f37"/><stop offset="1" stop-color="#15181d"/>
+            </linearGradient>
+          </defs>
+          <rect width="600" height="450" fill="url(#sky)"/>
+          <!-- grid -->
+          <g stroke="rgba(244,241,234,.04)" stroke-width="1">
+            <line x1="0" y1="100" x2="600" y2="100"/><line x1="0" y1="200" x2="600" y2="200"/><line x1="0" y1="300" x2="600" y2="300"/>
+            <line x1="100" y1="0" x2="100" y2="450"/><line x1="200" y1="0" x2="200" y2="450"/><line x1="300" y1="0" x2="300" y2="450"/><line x1="400" y1="0" x2="400" y2="450"/><line x1="500" y1="0" x2="500" y2="450"/>
+          </g>
+          <!-- road -->
+          <path d="M0 360 L600 320 L600 450 L0 450 Z" fill="#0b0d10"/>
+          <line x1="0" y1="358" x2="600" y2="318" stroke="var(--signal)" stroke-width="2" opacity=".5" stroke-dasharray="20 16"/>
+          <!-- truck silhouette: cab + trailer -->
+          <g transform="translate(120,150)">
+            <!-- trailer -->
+            <rect x="120" y="20" width="280" height="150" rx="6" fill="url(#trk)" stroke="#3a3f47" stroke-width="2"/>
+            <rect x="120" y="20" width="280" height="150" rx="6" fill="none" stroke="var(--signal)" stroke-width="1.5" opacity=".15"/>
+            <line x1="160" y1="20" x2="160" y2="170" stroke="#23272d" stroke-width="2"/>
+            <line x1="200" y1="20" x2="200" y2="170" stroke="#23272d" stroke-width="2"/>
+            <line x1="240" y1="20" x2="240" y2="170" stroke="#23272d" stroke-width="2"/>
+            <line x1="280" y1="20" x2="280" y2="170" stroke="#23272d" stroke-width="2"/>
+            <line x1="320" y1="20" x2="320" y2="170" stroke="#23272d" stroke-width="2"/>
+            <line x1="360" y1="20" x2="360" y2="170" stroke="#23272d" stroke-width="2"/>
+            <text x="260" y="105" text-anchor="middle" font-family="Anton" font-size="34" fill="var(--signal)" opacity=".85" letter-spacing="2">D.O.M</text>
+            <!-- cab -->
+            <path d="M40 70 L40 170 L120 170 L120 60 L75 60 L40 95 Z" fill="url(#trk)" stroke="#3a3f47" stroke-width="2"/>
+            <path d="M75 60 L48 92 L120 92 L120 60 Z" fill="#9fd0e8" opacity=".18"/>
+            <line x1="76" y1="62" x2="120" y2="62" stroke="#3a3f47"/>
+            <!-- details -->
+            <rect x="44" y="150" width="14" height="6" fill="var(--signal)"/>
+            <rect x="120" y="60" width="4" height="110" fill="#15181d"/>
+            <!-- wheels -->
+            <circle cx="75" cy="180" r="18" fill="#0b0d10" stroke="#3a3f47" stroke-width="3"/>
+            <circle cx="75" cy="180" r="7" fill="#2a2f37"/>
+            <circle cx="170" cy="180" r="18" fill="#0b0d10" stroke="#3a3f47" stroke-width="3"/>
+            <circle cx="170" cy="180" r="7" fill="#2a2f37"/>
+            <circle cx="230" cy="180" r="18" fill="#0b0d10" stroke="#3a3f47" stroke-width="3"/>
+            <circle cx="230" cy="180" r="7" fill="#2a2f37"/>
+            <circle cx="340" cy="180" r="18" fill="#0b0d10" stroke="#3a3f47" stroke-width="3"/>
+            <circle cx="340" cy="180" r="7" fill="#2a2f37"/>
+            <circle cx="400" cy="180" r="18" fill="#0b0d10" stroke="#3a3f47" stroke-width="3"/>
+            <circle cx="400" cy="180" r="7" fill="#2a2f37"/>
+          </g>
+          <!-- glow -->
+          <circle cx="300" cy="225" r="180" fill="var(--signal)" opacity=".05"/>
+        </svg>
+      </div>
+
+      <div class="reveal d1">
+        <span class="eyebrow">La flotta</span>
+        <h2 class="display section-title">Tecnologia su tutte le ruote.</h2>
+        <p class="lead" style="margin-top:22px">42 mezzi tra motrice+rimorchio, furgoni e centinati refrigerati, tutti di ultima generazione e connessi in rete.</p>
+
+        <div class="fleet-specs">
+          <div class="sp"><div class="k">Classe motorizzazione</div><div class="v">Euro<span class="u"> 6</span></div></div>
+          <div class="sp"><div class="k">Età media flotta</div><div class="v">3,2<span class="u"> anni</span></div></div>
+          <div class="sp"><div class="k">Portata massima</div><div class="v">24<span class="u"> t</span></div></div>
+          <div class="sp"><div class="k">Volume cassa</div><div class="v">92<span class="u"> m³</span></div></div>
+        </div>
+
+        <ul class="fleet-points">
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg><span><b>Telematica di bordo</b> con GPS, controllo temperature e diagnostiche remote.</span></li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg><span><b>Centinati refrigerati</b> per la catena del freddo da +25°C a −25°C.</span></li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg><span><b>Manutenzione programmata</b> per abbattere i fermi tecnici sotto lo 0,4%.</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== SUSTAINABILITY ===================== -->
+<section class="sec sust" id="sostenibilita">
+  <div class="wrap">
+    <div class="sust-grid">
+      <div class="reveal">
+        <span class="eyebrow">Sostenibilità</span>
+        <h2 class="display section-title">Logistica che <span class="lime">rispetta la strada</span> e l'aria.</h2>
+        <p class="lead" style="margin-top:22px">Investiamo in una mobilità merci più pulita: flotta Euro 6, ottimizzazione dei carichi e pianificazione delle rotte per ridurre i chilometri a vuoto e le emissioni.</p>
+        <ul class="fleet-points">
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg><span><b>Rinnovo flotta</b> verso motorizzazioni a minor impatto e biocarburanti.</span></li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg><span><b>Routing intelligente</b> che taglia i km a vuoto del 18% in tre anni.</span></li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg><span><b>Guida eco-sostenibile</b> con formazione e monitoraggio dello stile di guida.</span></li>
+        </ul>
+      </div>
+
+      <div class="sust-meter reveal d1">
+        <div class="big">−34<span class="u">%</span></div>
+        <div class="cap">Emissioni di CO₂ per chilometro percorso rispetto al 2019.</div>
+        <div class="bars">
+          <div class="bar"><div class="bh"><span>Flotta Euro 6</span><span class="pct">100%</span></div><div class="track-bar"><div class="fill" data-w="100"></div></div></div>
+          <div class="bar"><div class="bh"><span>Routing ottimizzato</span><span class="pct">86%</span></div><div class="track-bar"><div class="fill" data-w="86"></div></div></div>
+          <div class="bar"><div class="bh"><span>Carico medio mezzi</span><span class="pct">78%</span></div><div class="track-bar"><div class="fill" data-w="78"></div></div></div>
+          <div class="bar"><div class="bh"><span>Formazione eco-driving</span><span class="pct">92%</span></div><div class="track-bar"><div class="fill" data-w="92"></div></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== TESTIMONIALS ===================== -->
+<section class="sec" style="background:var(--ink-soft);border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="left">
+        <span class="eyebrow">Dicono di noi</span>
+        <h2 class="display section-title">Clienti che viaggiano con noi da anni.</h2>
+      </div>
+    </div>
+    <div class="testi-grid">
+      <article class="testi reveal">
+        <div class="stars">★★★★★</div>
+        <blockquote>Da quando lavoriamo con D.O.M le consegne ai nostri punti vendita in tutta la regione non sono mai saltate. Un partner affidabile e sempre puntuale.</blockquote>
+        <div class="who"><div class="av">MR</div><div><div class="nm">Marco Rinaldi</div><div class="rl">DIRETTORE LOGISTICA · CATENA DI FARMACIE</div></div></div>
+      </article>
+      <article class="testi reveal d1">
+        <div class="stars">★★★★★</div>
+        <blockquote>La catena del freddo per i nostri vaccini è vitale. Temperature sempre nella forchetta +2/+8°C e data logger su ogni carico: zero scarti in tre anni.</blockquote>
+        <div class="who"><div class="av">GS</div><div><div class="nm">Giulia Sartori</div><div class="rl">RESPONSABILE QUALITÀ · DISTRIBUTORE FARMACEUTICO</div></div></div>
+      </article>
+      <article class="testi reveal d2">
+        <div class="stars">★★★★★</div>
+        <blockquote>Consegne quotidiane nelle cinque province con tempi certi e un referente che risponde al primo squillo. Per noi di Jesi è il partner ideale.</blockquote>
+        <div class="who"><div class="av">PF</div><div><div class="nm">Paolo Ferraro</div><div class="rl">TITOLARE · AZIENDA ALIMENTARE</div></div></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== CTA BAND ===================== -->
+<section class="ctaband">
+  <div class="wrap">
+    <div>
+      <h2>Pronti a muovere la tua merce?</h2>
+      <p>Ricevi un preventivo gratuito entro 24 ore. Nessun impegno, solo numeri chiari.</p>
+    </div>
+    <a href="#contatti" class="btn btn-primary">Richiedi preventivo
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </a>
+  </div>
+</section>
+
+<!-- ===================== CONTACT ===================== -->
+<section class="sec" id="contatti">
+  <div class="wrap">
+    <div class="contact-grid">
+      <div class="contact-info reveal">
+        <span class="eyebrow">Contatti</span>
+        <h2>Parliamone.</h2>
+        <p class="lead">Hai una spedizione da organizzare o vuoi un preventivo? Scrivici o chiamaci: ti rispondiamo entro la giornata lavorativa.</p>
+
+        <div class="cinfo">
+          <div class="row">
+            <div class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+            <div><div class="k">Sede operativa</div><div class="v">Via Minonna · 60035 Jesi (AN)</div></div>
+          </div>
+          <div class="row">
+            <div class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
+            <div><div class="k">Telefono</div><div class="v"><a href="tel:+39051000000">+39 051 000 000</a></div></div>
+          </div>
+          <div class="row">
+            <div class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg></div>
+            <div><div class="k">Email &amp; PEC</div><div class="v"><a href="mailto:info@domautotrasporti.it">info@domautotrasporti.it</a><br><a href="mailto:domautotrasporti@pec.it">domautotrasporti@pec.it</a></div></div>
+          </div>
+          <div class="row">
+            <div class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div>
+            <div><div class="k">Orari</div><div class="v">Lun–Ven · 07:30–19:00 · Sab 08:00–13:00</div></div>
+          </div>
+        </div>
+      </div>
+
+      <form class="form-card reveal d1" id="quoteForm">
+        <div class="fc-head">
+          <div>
+            <h3>Richiedi un preventivo</h3>
+            <div class="sub">Compila il modulo: ti rispondiamo entro 24h.</div>
+          </div>
+          <span class="fc-badge">Risposta 24h</span>
+        </div>
+        <div class="frow">
+          <div class="fg"><label>Nome e cognome <span class="req">*</span></label><input type="text" required placeholder="Mario Rossi" /></div>
+          <div class="fg"><label>Azienda</label><input type="text" placeholder="Azienda S.r.l." /></div>
+        </div>
+        <div class="frow">
+          <div class="fg"><label>Email <span class="req">*</span></label><input type="email" required placeholder="mario@azienda.it" /></div>
+          <div class="fg"><label>Telefono</label><input type="tel" placeholder="+39 ..." /></div>
+        </div>
+        <div class="fg">
+          <label>Tipo di servizio <span class="req">*</span></label>
+          <select required>
+            <option value="" disabled selected>Seleziona un servizio…</option>
+            <option>Trasporto Express</option>
+            <option>Distribuzione capillare Marche</option>
+            <option>Logistica &amp; magazzino</option>
+            <option>Merci ADR</option>
+            <option>Catena del freddo</option>
+            <option>Trasporto medicinali</option>
+            <option>Altro / non so</option>
+          </select>
+        </div>
+        <div class="frow">
+          <div class="fg"><label>Città / provincia di ritiro</label><input type="text" placeholder="es. Jesi (AN)" /></div>
+          <div class="fg"><label>Quantità merce</label><input type="text" placeholder="es. 12 pallet, 2 ton" /></div>
+        </div>
+        <div class="fg"><label>Messaggio</label><textarea placeholder="Descrivi la tua esigenza: tratte, tipologia di merce, frequenza, esigenze di temperatura…"></textarea></div>
+        <div class="submit-row">
+          <button type="submit" class="btn btn-primary">Invia richiesta
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </button>
+        </div>
+        <div class="form-note">Inviando accetti la nostra <a href="#">Privacy Policy</a>. I campi contrassegnati con <span style="color:var(--signal)">*</span> sono obbligatori.</div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FOOTER ===================== -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a href="#" class="brand">
+          <span class="brand-mark"><span class="wheel"><span class="hub"></span></span></span>
+          <span class="brand-text"><span class="name">D<b>.</b>O<b>.</b>M</span><span class="sub">AUTOTRASPORTI</span></span>
+        </a>
+        <p>Trasporto su strada, distribuzione e logistica dal 1998. Sede a Jesi (AN), copertura su tutta la Regione Marche con catena del freddo e trasporto di medicinali GDP.</p>
+        <div class="foot-social">
+          <a href="#" aria-label="LinkedIn"><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14zM8 17v-7H6v7h2zM7 8.6A1.1 1.1 0 1 0 7 6.4a1.1 1.1 0 0 0 0 2.2zM18 17v-4c0-2-1-3-2.5-3a2.4 2.4 0 0 0-2.1 1.2h-.1V10H11v7h2.2v-3.6c0-1 .2-1.8 1.4-1.8s1.2 1 1.2 1.8V17H18z"/></svg></a>
+          <a href="#" aria-label="Instagram"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg></a>
+          <a href="#" aria-label="Facebook"><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.2c-1.2 0-1.6.8-1.6 1.5V12h2.7l-.4 2.9h-2.3v7A10 10 0 0 0 22 12z"/></svg></a>
+        </div>
+      </div>
+      <div class="foot-col">
+        <h4>Servizi</h4>
+        <ul>
+          <li><a href="#servizi">Trasporto Express</a></li>
+          <li><a href="#servizi">Distribuzione Marche</a></li>
+          <li><a href="#servizi">Logistica</a></li>
+          <li><a href="#medicinali">Medicinali</a></li>
+          <li><a href="#servizi">Merci ADR</a></li>
+          <li><a href="#servizi">Catena del freddo</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h4>Azienda</h4>
+        <ul>
+          <li><a href="#perche">Perché D.O.M</a></li>
+          <li><a href="#flotta">Flotta</a></li>
+          <li><a href="#sostenibilita">Sostenibilità</a></li>
+          <li><a href="#rete">Rete &amp; copertura</a></li>
+          <li><a href="#">Lavora con noi</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h4>Contatti</h4>
+        <ul>
+          <li><a href="tel:+39051000000">+39 051 000 000</a></li>
+          <li><a href="mailto:info@domautotrasporti.it">info@domautotrasporti.it</a></li>
+          <li><a href="#contatti">Jesi (AN), Italia</a></li>
+          <li><a href="#medicinali">Trasporto medicinali</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <div>© 2026 D.O.M Autotrasporti S.r.l. · P.IVA 01234567890 · REA AN-000000 · <span style="color:var(--signal)">v2.1</span></div>
+      <div class="legal">
+        <a href="#">Privacy</a>
+        <a href="#">Cookie Policy</a>
+        <a href="#">Termini</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<div class="toast" id="toast"><span class="ic">✓</span> <span id="toastMsg">Richiesta inviata!</span></div>
+
+<script>
+/* ---------- scroll progress ---------- */
+const progress=document.getElementById('progress');
+const nav=document.getElementById('nav');
+window.addEventListener('scroll',()=>{
+  const h=document.documentElement.scrollHeight-window.innerHeight;
+  progress.style.width=(window.scrollY/h*100)+'%';
+  nav.classList.toggle('scrolled',window.scrollY>40);
+},{passive:true});
+
+/* ---------- mobile menu ---------- */
+const burger=document.getElementById('burger');
+const mm=document.getElementById('mobileMenu');
+burger.addEventListener('click',()=>{burger.classList.toggle('open');mm.classList.toggle('open');});
+mm.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{burger.classList.remove('open');mm.classList.remove('open');}));
+
+/* ---------- reveal on scroll ---------- */
+const io=new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});
+},{threshold:.12,rootMargin:'0px 0px -60px 0px'});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+/* ---------- counters ---------- */
+function animateCount(el){
+  const target=parseFloat(el.dataset.count);
+  const dec=el.dataset.dec?parseInt(el.dataset.dec):0;
+  const suffix=el.dataset.suffix||'';
+  const dur=1600;const start=performance.now();
+  function tick(now){
+    const p=Math.min((now-start)/dur,1);
+    const eased=1-Math.pow(1-p,3);
+    const val=(target*eased).toFixed(dec);
+    el.innerHTML=val.replace('.',',')+ (suffix?'<span style="font-size:.5em;color:var(--bone-dim);margin-left:2px">'+suffix+'</span>':'');
+    if(p<1)requestAnimationFrame(tick);
+  }
+  requestAnimationFrame(tick);
+}
+const cio=new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{if(e.isIntersecting){animateCount(e.target);cio.unobserve(e.target);}});
+},{threshold:.5});
+document.querySelectorAll('[data-count]').forEach(el=>cio.observe(el));
+
+/* ---------- sustain bars ---------- */
+const bio=new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.style.width=e.target.dataset.w+'%';bio.unobserve(e.target);}});
+},{threshold:.4});
+document.querySelectorAll('.bar .fill').forEach(el=>bio.observe(el));
+
+/* ---------- toast helper (per form preventivo) ---------- */
+function showToast(msg){
+  const t=document.getElementById('toast');document.getElementById('toastMsg').textContent=msg;
+  t.classList.add('show');setTimeout(()=>t.classList.remove('show'),3200);
+}
+
+/* ---------- quote form ---------- */
+document.getElementById('quoteForm').addEventListener('submit',e=>{
+  e.preventDefault();
+  showToast('Grazie! Ti contattiamo entro 24 ore.');
+  e.target.reset();
+});
+</script>
+</body>
+</html>
