@@ -24,9 +24,9 @@
   --bone-mute:#6C6A64;
   --line:rgba(244,241,234,.10);
   --line-strong:rgba(244,241,234,.20);
-  --signal:#E31837;
-  --signal-deep:#B8122C;
-  --signal-glow:rgba(227,24,55,.35);
+  --signal:#D02B2A;
+  --signal-deep:#A82120;
+  --signal-glow:rgba(208,43,42,.35);
   --ember:#FFB800;
   --radius:14px;
   --maxw:1280px;
@@ -107,20 +107,14 @@ h1,h2,h3{font-weight:800;line-height:.98;letter-spacing:-.02em}
 .nav{position:sticky;top:0;z-index:500;transition:all .4s var(--ease);border-bottom:1px solid transparent}
 .nav.scrolled{background:rgba(12,13,15,.82);backdrop-filter:blur(18px) saturate(140%);-webkit-backdrop-filter:blur(18px) saturate(140%);border-bottom-color:var(--line)}
 .nav .wrap{display:flex;align-items:center;justify-content:space-between;height:76px}
-.brand{display:flex;align-items:center;gap:13px}
-.brand-mark{width:46px;height:46px;border-radius:11px;display:grid;place-items:center;position:relative;overflow:hidden;background:var(--signal);box-shadow:0 6px 20px var(--signal-glow);transition:transform .4s var(--ease)}
-.brand:hover .brand-mark{transform:rotate(-4deg) scale(1.04)}
-/* blocco geometrico: metà sinistra rossa, metà destra bianca con barre */
-.brand-mark::before{content:"";position:absolute;top:0;left:0;width:50%;height:100%;background:var(--ink)}
-.brand-mark::after{content:"";position:absolute;top:0;right:0;width:50%;height:100%;background:var(--bone)}
-/* lettera D stilizzata (mezzo cerchio rosso su bianco) */
-.brand-mark .mark-d{position:relative;z-index:2;width:18px;height:22px;border:3.5px solid var(--signal);border-radius:0 11px 11px 0;border-left:none;background:transparent}
-/* barra orizzontale bianca che taglia = federazione con la O */
-.brand-mark .mark-bar{position:absolute;z-index:3;left:9px;top:50%;transform:translateY(-50%);width:26px;height:3.5px;background:var(--signal)}
+.brand{display:flex;align-items:center;gap:12px}
+/* logo: blocco rosso con scritta DOM bianca in condensed heavy */
+.brand-mark{width:auto;height:38px;background:var(--signal);border-radius:7px;display:flex;align-items:center;justify-content:center;padding:0 12px;box-shadow:0 5px 18px var(--signal-glow);transition:transform .4s var(--ease);position:relative}
+.brand:hover .brand-mark{transform:translateY(-2px)}
+.brand-mark .dom{font-family:var(--font-display);font-size:1.45rem;color:#fff;letter-spacing:.02em;line-height:1;padding:3px 0}
 .brand-text{line-height:1}
-.brand-text .name{font-family:var(--font-display);font-size:1.45rem;letter-spacing:.04em;color:var(--bone)}
-.brand-text .name b{color:var(--signal)}
-.brand-text .sub{font-family:var(--font-mono);font-size:.6rem;letter-spacing:.32em;color:var(--bone-dim);margin-top:4px}
+.brand-text .name{font-family:var(--font-display);font-size:1.3rem;letter-spacing:.04em;color:var(--bone)}
+.brand-text .sub{font-family:var(--font-mono);font-size:.58rem;letter-spacing:.3em;color:var(--bone-dim);margin-top:4px}
 .nav-links{display:flex;gap:34px;align-items:center}
 .nav-links a{font-size:.86rem;font-weight:500;color:var(--bone-dim);transition:color .2s;position:relative;padding:4px 0}
 .nav-links a::after{content:"";position:absolute;left:0;bottom:-2px;width:0;height:1px;background:var(--signal);transition:width .3s var(--ease)}
@@ -446,13 +440,10 @@ footer .foot-bottom a:hover{color:var(--signal)}
 <nav class="nav" id="nav">
   <div class="wrap">
     <a href="#" class="brand">
-      <span class="brand-mark">
-        <span class="mark-d"></span>
-        <span class="mark-bar"></span>
-      </span>
+      <span class="brand-mark"><span class="dom">DOM</span></span>
       <span class="brand-text">
-        <span class="name">DOM</span>
-        <span class="sub">AUTOTRASPORTI</span>
+        <span class="name">AUTOTRASPORTI</span>
+        <span class="sub">ROMAGNA · MARCHE · ABRUZZO</span>
       </span>
     </a>
     <div class="nav-links">
@@ -1061,8 +1052,8 @@ footer .foot-bottom a:hover{color:var(--signal)}
     <div class="foot-grid">
       <div class="foot-brand">
         <a href="#" class="brand">
-          <span class="brand-mark"><span class="mark-d"></span><span class="mark-bar"></span></span>
-          <span class="brand-text"><span class="name">DOM</span><span class="sub">AUTOTRASPORTI</span></span>
+          <span class="brand-mark"><span class="dom">DOM</span></span>
+          <span class="brand-text"><span class="name">AUTOTRASPORTI</span><span class="sub">ROMAGNA · MARCHE · ABRUZZO</span></span>
         </a>
         <p>Trasporto su strada, distribuzione e logistica dal 1998. Sede a Jesi (AN), copertura sulla costa adriatica (Romagna, Marche e Abruzzo) con catena del freddo e trasporto di medicinali GDP.</p>
         <div class="foot-social">
